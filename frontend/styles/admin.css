@@ -30,7 +30,7 @@ main section form div:last-child {
   justify-content: center;
 }
 
-main section form div input[type='text'] {
+main section form div input[type="text"] {
   width: 100%;
   padding: 5px 10px;
   border-radius: 0;
@@ -40,7 +40,7 @@ main section form div input[type='text'] {
   outline: none;
 }
 
-main section form div input[type='submit'] {
+main section form div input[type="submit"] {
   width: 20%;
   margin-top: 15px;
   cursor: pointer;
@@ -50,7 +50,7 @@ main section form div input[type='submit'] {
   text-transform: uppercase;
 }
 
-main section form div input[type='submit']:hover {
+main section form div input[type="submit"]:hover {
   background-color: #555;
   color: #fff;
 }
@@ -126,4 +126,25 @@ main section p {
   padding: 5px;
   background-color: #9b3d3d;
   color: #fff;
+}
+
+#adminPageContainer {
+  display: flex;
+  /* flex-wrap: wrap; */
+  /* justify-content: flex-end; */
+  align-items: center;
+  margin-top: 20px;
+}
+
+#adminPageContainer button {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 17px;
+  border: 1px solid #f4f4f4;
+}
+
+.pageBox:hover {
+  border-color: #ccc;
 }

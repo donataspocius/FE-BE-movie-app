@@ -2,7 +2,7 @@ import { api } from "./api.js";
 
 // Variables
 let pageIndex = 0;
-let itemsPerPage = 10;
+let itemsPerPage = 3;
 
 // -- DOM elements
 const addMovieFormElement = document.querySelector("#add-movie-form");
@@ -47,6 +47,7 @@ const getMovies = async () => {
   const data = await api.getData();
 
   showMovies(data.movies);
+  renderPagination(data.movies);
 };
 
 // -- show movies
@@ -136,6 +137,25 @@ const showMovies = (moviesArray) => {
 
   movieListContainerElement.appendChild(table);
 };
+
+function renderPagination(moviesArray) {
+  let adminPageContainer = document.querySelector("#adminPageContainer");
+  while (adminPageContainer.firstChild) {
+    adminPageContainer.removeChild(adminPageContainer.firstChild);
+  }
+
+  for (let i = 0; i < Math.ceil(moviesArray.length / itemsPerPage); i++) {
+    let pageBtn = document.createElement("button");
+    pageBtn.className = "pageBox";
+    pageBtn.innerText = i + 1;
+    pageBtn.addEventListener("click", (e) => {
+      pageIndex = Number(e.target.innerText) - 1;
+      showMovies(moviesArray);
+      // console.log(pageIndex);
+    });
+    adminPageContainer.append(pageBtn);
+  }
+}
 
 // ORIGINAL CODE
 // <<<<<<<<<>>>>>>>>>>>>>

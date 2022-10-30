@@ -1,4 +1,5 @@
 import { api } from "./api.js";
+import { renderPagination, itemsPerPage, pageIndex } from "./utils.js";
 
 // Variables
 // -- DOM elements
@@ -14,8 +15,8 @@ const moviesContainerElement = document.querySelector("#movies-container");
 let movies = [];
 let category;
 
-let pageIndex = 0;
-let itemsPerPage = 3;
+// let pageIndex = 0;
+// let itemsPerPage = 3;
 
 // Functions
 // -- get all movies
@@ -25,7 +26,7 @@ const getMovies = async () => {
   movies.push(...data.movies);
   generateOptionTags(data.movies);
   showMovies(data.movies);
-  renderPagination(data.movies);
+  renderPagination(data.movies, showMovies);
 };
 
 // -- generate <option> tags for filtering <select>
@@ -124,41 +125,23 @@ const showMovies = (moviesArray) => {
   // });
 };
 
-function renderPagination(moviesArray) {
-  const pageNav = document.createElement("div");
-  pageNav.className = "pageContainer";
-  document.querySelector("main section").append(pageNav);
-
-  while (pageNav.firstChild) {
-    pageNav.removeChild(pageNav.firstChild);
-  }
-
-  for (let i = 0; i < Math.ceil(moviesArray.length / itemsPerPage); i++) {
-    let pageBtn = document.createElement("button");
-    pageBtn.className = "pageBox";
-    pageBtn.innerText = i + 1;
-    pageBtn.addEventListener("click", (e) => {
-      pageIndex = Number(e.target.innerText) - 1;
-      showMovies(moviesArray);
-      // console.log(pageIndex);
-    });
-    pageNav.append(pageBtn);
-  }
-}
 // -- filtering movies
 // -- -- filtering by category
 const filterMoviesByCategory = (e) => {
   category = e.target.value;
 
   if (category === "all-movies") {
-    showMovies(movies);
+    // showMovies(movies);
+    renderPagination(movies, showMovies);
+
     generateOptionTags(movies, "category");
   } else {
     const filteredMovies = movies.filter(
       (movie) => movie.category === category
     );
 
-    showMovies(filteredMovies);
+    // showMovies(filteredMovies);
+    renderPagination(filteredMovies, showMovies);
     generateOptionTags(filteredMovies, "category");
   }
 };
@@ -168,13 +151,15 @@ const filterMoviesByPrice = (e) => {
   const currentPrice = e.target.value;
 
   if (category === "all-movies" && currentPrice === "all-prices") {
-    showMovies(movies);
+    // showMovies(movies);
+    renderPagination(movies, showMovies);
   } else if (currentPrice === "all-prices") {
     const filteredMovies = movies.filter(
       (movie) => movie.category === category
     );
 
-    showMovies(filteredMovies);
+    // showMovies(filteredMovies);
+    renderPagination(filteredMovies, showMovies);
   } else {
     let filteredMovies;
     if (category && category !== "all-movies") {
@@ -188,7 +173,8 @@ const filterMoviesByPrice = (e) => {
       );
     }
 
-    showMovies(filteredMovies);
+    // showMovies(filteredMovies);
+    renderPagination(filteredMovies, showMovies);
   }
 };
 

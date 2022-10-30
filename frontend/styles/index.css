@@ -52,8 +52,26 @@ main section #movies-container div:hover {
   border-color: #ccc;
 }
 
-/* .pageContainer {
-} */
+#pageContainer {
+  display: flex;
+  /* flex-wrap: wrap; */
+  /* justify-content: flex-end; */
+  align-items: center;
+  margin-top: 20px;
+}
+
+#pageContainer button {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 17px;
+  border: 1px solid #f4f4f4;
+}
+
+#pageContainer button:hover {
+  border-color: #ccc;
+}
 
 @media screen and (min-width: 768px) {
   main section #movies-container div {
