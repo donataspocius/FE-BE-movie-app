@@ -14,6 +14,7 @@ const moviesContainerElement = document.querySelector("#movies-container");
 // -- logic
 let movies = [];
 let category;
+let searchValue = "";
 
 // let pageIndex = 0;
 // let itemsPerPage = 3;
@@ -124,6 +125,15 @@ const showMovies = (moviesArray) => {
   //   moviesContainerElement.appendChild(div);
   // });
 };
+
+// -- Search movies
+document.querySelector("#searchInput").addEventListener("input", (e) => {
+  searchValue = e.target.value;
+  let filteredResults = movies.filter((movie) => {
+    return movie.name.toLowerCase().includes(searchValue.toLowerCase());
+  });
+  showMovies(filteredResults);
+});
 
 // -- filtering movies
 // -- -- filtering by category
