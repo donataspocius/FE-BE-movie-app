@@ -1,0 +1,24 @@
+POST http://localhost:5000/api/movies
+content-type: application/json
+
+{
+    "name": "Simpsons",
+    "category": "Comedy",
+    "rentPrice": 4
+}
+
+###
+GET http://localhost:5000/api/movies
+
+###
+PUT http://localhost:5000/api/movies/6356d4907a9f1271c7a94af7
+content-type: application/json
+
+{
+    "name": "Batman 2",
+    "category": "Action",
+    "rentPrice": 5
+}
+
+###
+DELETE http://localhost:5000/api/movies/6356d4907a9f1271c7a94af7
